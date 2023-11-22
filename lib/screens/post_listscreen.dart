@@ -67,22 +67,36 @@ class _PostListScreenState extends State<PostListScreen> {
         centerTitle: true,
         title: Text('Post List',),
       ),
+
+
       body: posts.isEmpty
           ? Center(
               child: CircularProgressIndicator(),
             )
+            
           : Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                DropdownButton<User>(
-                  value: selectedUser,
-                  onChanged: _onUserChanged,
-                  items: users.map((user) {
-                    return DropdownMenuItem<User>(
-                      value: user,
-                      child: Text(user.name),
-                    );
-                  }).toList(),
+                
+                Container(
+                  decoration: BoxDecoration(
+                    // color: const Color.fromARGB(255, 74, 24, 255),
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: DropdownButton<User>(
+                    focusColor: Colors.cyanAccent,
+                    borderRadius: BorderRadius.circular(20),
+                    value: selectedUser,
+                    onChanged: _onUserChanged,
+                    items: users.map((user) {
+                      return DropdownMenuItem<User>(
+                        value: user,
+                        child: Text(user.name),
+                      );
+                    }).toList(),
+                  
+                    
+                  ),
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -90,21 +104,25 @@ class _PostListScreenState extends State<PostListScreen> {
                     itemBuilder: (context, index) {
                       final post = posts[index];
                       if (post.userId == selectedUser.id) {
-                        return ListTile(
-                          title: Text(post.title),
-                          subtitle: Text(post.body),
-                          
-                          onTap: () {
-                   
-                        Navigator.push(
-                           context,
-                           MaterialPageRoute(
-                            builder: (context) => PostDetailsScreen(post: post),
-                               ));
-                          },
-                          trailing: IconButton(
-                            icon: Icon(Icons.delete),
-                            onPressed: () => _deletePost(post.id),
+                        return Card(
+                          color: Colors.cyanAccent,
+                          shadowColor: Colors.black,
+                          child: ListTile(
+                            title: Text(post.title),
+                            subtitle: Text(post.body),
+                            
+                            onTap: () {
+                                             
+                          Navigator.push(
+                             context,
+                             MaterialPageRoute(
+                              builder: (context) => PostDetailsScreen(post: post),
+                                 ));
+                            },
+                            trailing: IconButton(
+                              icon: Icon(Icons.delete),
+                              onPressed: () => _deletePost(post.id),
+                            ),
                           ),
                         );
                       } else {

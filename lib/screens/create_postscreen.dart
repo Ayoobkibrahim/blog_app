@@ -39,6 +39,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             TextField(
               controller: _titleController,
               decoration: InputDecoration(
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                
                 labelText: 'Title',
               ),
             ),
@@ -46,15 +48,18 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             TextField(
               controller: _bodyController,
               decoration: InputDecoration(
+                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                 labelText: 'Body',
               ),
-              maxLines: null,
+              maxLines: 5,
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 25),
             
-            ElevatedButton(
-              onPressed: _createPost,
-              child: Text('Create Post'),
+            Center(
+              child: ElevatedButton(
+                onPressed: _createPost,
+                child: Text('Create Post'),
+              ),
             ),
           ],
         ),

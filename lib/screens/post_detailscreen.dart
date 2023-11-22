@@ -69,9 +69,12 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                       itemCount: comments.length,
                       itemBuilder: (context, index) {
                         final comment = comments[index];
-                        return ListTile(
-                          title: Text(comment.name),
-                          subtitle: Text(comment.body),
+                        return Card(
+                          color: Colors.cyanAccent,
+                          child: ListTile(
+                            title: Text(comment.name),
+                            subtitle: Text(comment.body),
+                          ),
                         );
                       },
                     ),
